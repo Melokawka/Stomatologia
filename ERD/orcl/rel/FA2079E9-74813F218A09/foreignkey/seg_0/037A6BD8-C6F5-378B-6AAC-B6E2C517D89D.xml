@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="037A6BD8-C6F5-378B-6AAC-B6E2C517D89D" containerWithKeyObject="83126C88-1C31-7A4C-10F9-894167D67795" localFKIndex="54CE955A-1C6A-52C0-2FA5-37E795658B58" name="ID_RODZDOWIZAB">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>ID_RODZDOWIZAB</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:09 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<referredTableLongName>ZUZANNA.RODZAJ_ZABIEGU</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>50424F19-9E6A-308E-8B3A-189DA69E00E2</referredTableID>
+<keyObject>44AA3172-E3A2-207D-5799-F0CD3FAD371E</keyObject>
+<referredKeyID>44AA3172-E3A2-207D-5799-F0CD3FAD371E</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_RODZAJU_ZABIEGU</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,8 @@
+create or replace TRIGGER ArchiwizujAutomatycznie
+    BEFORE 
+    INSERT 
+    ON uruchom
+BEGIN
+    dbms_output.put_line('Automatyczna archiwizacja wizyt');
+    util_pack.archiwizujwszystkie;
+END;

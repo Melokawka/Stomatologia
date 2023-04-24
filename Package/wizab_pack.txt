@@ -1,0 +1,112 @@
+create or replace PACKAGE wizab_pack AS
+
+    PROCEDURE dodaj (
+        z_id_wizyty          IN NUMBER,
+        z_id_rodzaju_zabiegu IN NUMBER,
+        z_refundacja         IN CHAR
+    );
+
+    PROCEDURE usun (
+        z_id_wizyty IN NUMBER,
+        z_id_rodzaju_zabiegu IN NUMBER,
+        z_refundacja         IN CHAR
+    );
+
+END wizab_pack;
+
+create or replace PACKAGE BODY wizab_pack AS
+
+    PROCEDURE dodaj (
+        z_id_wizyty          IN NUMBER,
+        z_id_rodzaju_zabiegu IN NUMBER,
+        z_refundacja         IN CHAR
+    ) IS
+
+        wz_id_wizyty_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( wz_id_wizyty_zla_wartosc, -20037 );
+        wz_id_rodzaju_zabiegu_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( wz_id_rodzaju_zabiegu_zla_wartosc, -20038 );
+        wz_refundacja_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( wz_refundacja_zla_wartosc, -20039 );
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            wizyta
+        WHERE
+            id_wizyty = z_id_wizyty;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20037, 'WIZYTA_ZABIEGI.ID_WIZYTY nie istnieje');
+        END IF;
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            rodzaj_zabiegu
+        WHERE
+            id_rodzaju_zabiegu = z_id_rodzaju_zabiegu;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20038, 'WIZYTA_ZABIEGI.ID_RODZAJU_ZABIEGU nie istnieje');
+        END IF;
+        IF NOT regexp_like(z_refundacja, '^[0,1]{1}$') THEN
+            raise_application_error(-20039, 'WIZYTA_ZABIEGI.REFUNDACJA niepoprawna wartosc');
+        END IF;
+
+        INSERT INTO wizyta_zabiegi VALUES (
+            z_id_wizyty,
+            z_id_rodzaju_zabiegu,
+            z_refundacja
+        );
+
+        dbms_output.put_line('poprawny wizyta-zabiegi');
+        COMMIT;
+    END dodaj;
+
+    PROCEDURE usun (
+        z_id_wizyty IN NUMBER,
+        z_id_rodzaju_zabiegu IN NUMBER,
+        z_refundacja         IN CHAR
+    ) IS
+        wz_id_wizyty_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( wz_id_wizyty_zla_wartosc, -20037 );
+        wz_id_rodzaju_zabiegu_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( wz_id_rodzaju_zabiegu_zla_wartosc, -20038 );
+        wz_refundacja_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( wz_refundacja_zla_wartosc, -20039 );
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            wizyta
+        WHERE
+            id_wizyty = z_id_wizyty;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20037, 'WIZYTA_ZABIEGI.ID_WIZYTY nie istnieje');
+        END IF;
+        IF NOT regexp_like(z_refundacja, '^[0,1]{1}$') THEN
+            raise_application_error(-20039, 'WIZYTA_ZABIEGI.REFUNDACJA niepoprawna wartosc');
+        END IF;
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            rodzaj_zabiegu
+        WHERE
+            id_rodzaju_zabiegu = z_id_rodzaju_zabiegu;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20038, 'WIZYTA_ZABIEGI.ID_RODZAJU_ZABIEGU nie istnieje');
+        END IF;
+        DELETE FROM wizyta_zabiegi WHERE id_wizyty = z_id_wizyty AND id_rodzaju_zabiegu = z_id_rodzaju_zabiegu AND refundacja = z_refundacja AND ROWNUM=1;
+        dbms_output.put_line('poprawny wizyta-zabiegi');
+        COMMIT;
+    END usun;
+
+END wizab_pack;

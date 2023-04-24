@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="83126C88-1C31-7A4C-10F9-894167D67795" schemaObject="311C06CB-573B-F841-54D3-F4FEA4F28EFB" name="WIZYTA_ZABIEGI">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>WIZYTA_ZABIEGI</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:01 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_WIZYTY" id="E6E7FF2A-FB28-A766-4955-D346626FC719">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA_ZABIEGI</sourceObjSchema>
+<sourceObjName>ID_WIZYTY</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="48225ED4-1865-2CEF-813C-9BB911DC2E3E" referredColumn="1C2898BB-BF32-F224-EB18-350BE3104321"/>
+</associations>
+</Column>
+<Column name="ID_RODZAJU_ZABIEGU" id="71A72BCA-C733-39A7-63F5-F845294F4F5D">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA_ZABIEGI</sourceObjSchema>
+<sourceObjName>ID_RODZAJU_ZABIEGU</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="037A6BD8-C6F5-378B-6AAC-B6E2C517D89D" referredColumn="1D237A30-4609-7835-0F00-1BBBD5F8336F"/>
+</associations>
+</Column>
+<Column name="REFUNDACJA" id="2C5C0296-A9A1-6996-DD46-86ED893E3004">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA_ZABIEGI</sourceObjSchema>
+<sourceObjName>REFUNDACJA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="102A2EDB-8BBA-7890-B89B-E61957273986" name="FK_WIZDOWIZAB">
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:09 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E6E7FF2A-FB28-A766-4955-D346626FC719"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54CE955A-1C6A-52C0-2FA5-37E795658B58" name="ID_RODZDOWIZAB">
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:09 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="71A72BCA-C733-39A7-63F5-F845294F4F5D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

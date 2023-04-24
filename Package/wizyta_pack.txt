@@ -1,0 +1,228 @@
+create or replace PACKAGE wizyta_pack AS
+    PROCEDURE dodaj (
+        z_godzina        IN CHAR,
+        z_data_          IN CHAR,
+        z_id_pacjenta    IN NUMBER,
+        z_id_stomatologa IN NUMBER,
+        z_koszt          IN NUMBER,
+        z_archiwalna     IN CHAR
+    );
+
+    PROCEDURE edytuj (
+        z_id_wizyty      IN NUMBER,
+        z_godzina        IN CHAR,
+        z_data_          IN CHAR,
+        z_id_pacjenta    IN NUMBER,
+        z_id_stomatologa IN NUMBER,
+        z_koszt          IN NUMBER,
+        z_archiwalna     IN CHAR
+    );
+
+    PROCEDURE usun (
+        z_id_wizyty IN NUMBER
+    );
+
+END wizyta_pack;
+
+create or replace PACKAGE BODY wizyta_pack AS
+
+    PROCEDURE dodaj (
+        z_godzina        IN CHAR,
+        z_data_          IN CHAR,
+        z_id_pacjenta    IN NUMBER,
+        z_id_stomatologa IN NUMBER,
+        z_koszt          IN NUMBER,
+        z_archiwalna     IN CHAR
+    ) IS
+
+        w_godzina_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_godzina_zla_wartosc, -20030 );
+        w_data_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_data_zla_wartosc, -20031 );
+        w_id_pacjenta_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_id_pacjenta_zla_wartosc, -20032 );
+        w_id_stomatologa_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_id_stomatologa_zla_wartosc, -20033 );
+        w_koszt_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_koszt_zla_wartosc, -20034 );
+        w_archiwalna_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_archiwalna_zla_wartosc, -20035 );
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            pacjent
+        WHERE
+            id_pacjenta = z_id_pacjenta;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20032, 'WIZYTA.ID_PACJENTA nie istnieje');
+        END IF;
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            stomatolog
+        WHERE
+            id_stomatologa = z_id_stomatologa;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20033, 'WIZYTA.ID_STOMATOLOGA nie istnieje');
+        END IF;
+        IF NOT regexp_like(z_godzina, '^[0-9]{2}:[0-9]{2}:[0-9]{2}$') THEN
+            raise_application_error(-20030, 'WIZYTA.GODZINA niepoprawna wartosc');
+        ELSE
+            util_pack.sprawdzgodzine(z_godzina);
+        END IF;
+
+        IF NOT regexp_like(z_data_, '^[0-9]{2}-[0-9]{2}-[0-9]{4}$') THEN
+            raise_application_error(-20031, 'WIZYTA.DATA_ niepoprawna wartosc');
+        ELSE
+            util_pack.sprawdzdate(z_data_);
+        END IF;
+
+        IF NOT regexp_like(z_koszt, '^[[:digit:]]+$') THEN
+            raise_application_error(-20034, 'WIZYTA.KOSZT niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_archiwalna, '^[0,1]{1}$') THEN
+            raise_application_error(-20035, 'WIZYTA.ARCHIWALNA niepoprawna wartosc');
+        END IF;
+
+        INSERT INTO wizyta VALUES (
+            NULL,
+            z_godzina,
+            to_date(z_data_, 'DD-MM-YYYY'),
+            z_id_pacjenta,
+            z_id_stomatologa,
+            z_koszt,
+            z_archiwalna
+        );
+
+        dbms_output.put_line('poprawna wizyta');
+        COMMIT;
+    END dodaj;
+
+    PROCEDURE edytuj (
+        z_id_wizyty      IN NUMBER,
+        z_godzina        IN CHAR,
+        z_data_          IN CHAR,
+        z_id_pacjenta    IN NUMBER,
+        z_id_stomatologa IN NUMBER,
+        z_koszt          IN NUMBER,
+        z_archiwalna     IN CHAR
+    ) IS
+
+        w_godzina_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_godzina_zla_wartosc, -20030 );
+        w_data_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_data_zla_wartosc, -20031 );
+        w_id_pacjenta_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_id_pacjenta_zla_wartosc, -20032 );
+        w_id_stomatologa_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_id_stomatologa_zla_wartosc, -20033 );
+        w_koszt_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_koszt_zla_wartosc, -20034 );
+        w_archiwalna_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_archiwalna_zla_wartosc, -20035 );
+        w_id_nie_istnieje EXCEPTION;
+        PRAGMA exception_init ( w_id_nie_istnieje, -20036 );
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            wizyta
+        WHERE
+            id_wizyty = z_id_wizyty;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20036, 'WIZYTA.ID_WIZYTY nie istnieje');
+        END IF;
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            pacjent
+        WHERE
+            id_pacjenta = z_id_pacjenta;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20032, 'WIZYTA.ID_PACJENTA nie istnieje');
+        END IF;
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            stomatolog
+        WHERE
+            id_stomatologa = z_id_stomatologa;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20033, 'WIZYTA.ID_STOMATOLOGA nie istnieje');
+        END IF;
+        IF NOT regexp_like(z_godzina, '^[0-9]{2}:[0-9]{2}:[0-9]{2}$') THEN
+            raise_application_error(-20030, 'WIZYTA.GODZINA niepoprawna wartosc');
+        ELSE
+            util_pack.sprawdzgodzine(z_godzina);
+        END IF;
+
+        IF NOT regexp_like(z_data_, '^[0-9]{2}-[0-9]{2}-[0-9]{4}$') THEN
+            raise_application_error(-20031, 'WIZYTA.DATA_ niepoprawna wartosc');
+        ELSE
+            util_pack.sprawdzdate(z_data_);
+        END IF;
+
+        IF NOT regexp_like(z_koszt, '^[[:digit:]]+$') THEN
+            raise_application_error(-20034, 'WIZYTA.KOSZT niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_archiwalna, '^[0,1]{1}$') THEN
+            raise_application_error(-20035, 'WIZYTA.ARCHIWALNA niepoprawna wartosc');
+        END IF;
+
+        UPDATE wizyta
+        SET
+            godzina = z_godzina,
+            data_ = to_date(z_data_, 'DD-MM-YYYY'),
+            id_pacjenta = z_id_pacjenta,
+            id_stomatologa = z_id_stomatologa,
+            koszt = z_koszt,
+            archiwalna = z_archiwalna
+        WHERE
+            id_wizyty = z_id_wizyty;
+
+        dbms_output.put_line('poprawna wizyta');
+        COMMIT;
+    END edytuj;
+
+    PROCEDURE usun (
+        z_id_wizyty IN NUMBER
+    ) IS
+        w_id_wizyty_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( w_id_wizyty_zla_wartosc, -20036 );
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            wizyta
+        WHERE
+            id_wizyty = z_id_wizyty;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20036, 'WIZYTA.ID_WIZYTY nie istnieje');
+        END IF;
+        DELETE FROM wizyta
+        WHERE
+            wizyta.id_wizyty = z_id_wizyty;
+
+        dbms_output.put_line('poprawna wizyta');
+        COMMIT;
+    END usun;
+
+END wizyta_pack;

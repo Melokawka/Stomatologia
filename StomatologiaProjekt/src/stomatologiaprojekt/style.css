@@ -1,0 +1,8 @@
+
+
+.pane{
+    -fx-background-image: url("/stomatologiaprojekt/tlo.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: cover, auto;
+    -fx-background-position: top left;
+}

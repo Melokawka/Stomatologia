@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stomatologiaprojekt.EdytujPacjentaController">
+   <children>
+      <Text layoutX="170.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edytuj pacjenta">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Text>
+      <Button layoutX="48.0" layoutY="340.0" mnemonicParsing="false" onAction="#EdytujButtonAction" prefHeight="25.0" prefWidth="76.0" text="Edytuj" />
+      <Button layoutX="147.0" layoutY="340.0" mnemonicParsing="false" onAction="#AnulujButtonAction" prefHeight="25.0" prefWidth="76.0" text="Anuluj" />
+      <TextField fx:id="ImieTekst" layoutX="48.0" layoutY="106.0" />
+      <Text layoutX="48.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Imię:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nazwiskoTekst" layoutX="48.0" layoutY="166.0" />
+      <Text layoutX="48.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Nazwisko:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="peselTekst" layoutX="48.0" layoutY="277.0" />
+      <Text layoutX="48.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PESEL:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="miejscowoscTekst" layoutX="259.0" layoutY="166.0" />
+      <Text layoutX="259.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miejscowość:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="adresTekst" layoutX="259.0" layoutY="222.0" />
+      <Text layoutX="48.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Płeć:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="telefonTekst" layoutX="259.0" layoutY="277.0" />
+      <Text layoutX="259.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="DataUrPicker" layoutX="259.0" layoutY="105.0" prefHeight="26.0" prefWidth="149.0" />
+      <Text layoutX="258.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data urodzenia:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="RadKobieta" layoutX="48.0" layoutY="226.0" mnemonicParsing="false" selected="true" text="Kobieta">
+         <toggleGroup>
+            <ToggleGroup fx:id="PlecGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="RadMezczyzna" layoutX="139.0" layoutY="226.0" mnemonicParsing="false" text="Mężczyzna" toggleGroup="$PlecGroup"/>
+      <Text layoutX="259.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adres:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="RadTak" layoutX="258.0" layoutY="344.0" mnemonicParsing="false" selected="true" text="Tak">
+         <toggleGroup>
+            <ToggleGroup fx:id="UbezpieczenieGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="RadNie" layoutX="349.0" layoutY="344.0" mnemonicParsing="false" text="Nie" toggleGroup="$UbezpieczenieGroup">
+
+      </RadioButton>
+      <Text layoutX="260.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubezpieczenie:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

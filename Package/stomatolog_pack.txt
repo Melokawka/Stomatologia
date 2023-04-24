@@ -1,0 +1,228 @@
+create or replace PACKAGE stomatolog_pack AS
+    PROCEDURE dodaj (
+        z_imie             IN VARCHAR2,
+        z_nazwisko         IN VARCHAR2,
+        z_rok_zatrudnienia IN CHAR,
+        z_data_urodzenia   IN VARCHAR2,
+        z_telefon          IN CHAR,
+        z_id_kliniki       IN NUMBER,
+        z_godziny_przyjec  IN CHAR
+    );
+
+    PROCEDURE edytuj (
+        z_id_stomatologa   IN NUMBER,
+        z_imie             IN VARCHAR2,
+        z_nazwisko         IN VARCHAR2,
+        z_rok_zatrudnienia IN CHAR,
+        z_data_urodzenia   IN VARCHAR2,
+        z_telefon          IN CHAR,
+        z_id_kliniki       IN NUMBER,
+        z_godziny_przyjec  IN CHAR
+    );
+
+    PROCEDURE usun (
+        z_id_stomatologa IN NUMBER
+    );
+
+END stomatolog_pack;
+
+create or replace PACKAGE BODY stomatolog_pack AS
+
+    PROCEDURE dodaj (
+        z_imie             IN VARCHAR2,
+        z_nazwisko         IN VARCHAR2,
+        z_rok_zatrudnienia IN CHAR,
+        z_data_urodzenia   IN VARCHAR2,
+        z_telefon          IN CHAR,
+        z_id_kliniki       IN NUMBER,
+        z_godziny_przyjec  IN CHAR
+    ) IS
+
+        s_imie_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_imie_zla_wartosc, -20022 );
+        s_nazw_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_nazw_zla_wartosc, -20023 );
+        s_rok_zatrudnienia_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_rok_zatrudnienia_zla_wartosc, -20024 );
+        s_dataur_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_dataur_zla_wartosc, -20025 );
+        s_telefon_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_telefon_zla_wartosc, -20026 );
+        s_id_kliniki_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_id_kliniki_zla_wartosc, -20027 );
+        s_godziny_przyjec_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_godziny_przyjec_zla_wartosc, -20028 );
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            klinika
+        WHERE
+            id_kliniki = z_id_kliniki;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20027, 'STOMATOLOG.ID_KLINIKI nie istnieje');
+        END IF;
+        IF NOT regexp_like(z_imie, '^[[:alpha:]]{0,20}$') THEN
+            raise_application_error(-20022, 'STOMATOLOG.IMIE niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_nazwisko, '^[[:alpha:]]{0,20}$') THEN
+            raise_application_error(-20023, 'STOMATOLOG.NAZWISKO niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_rok_zatrudnienia, '^[[:digit:]]{4}$') THEN
+            raise_application_error(-20024, 'STOMATOLOG.ROK_ZATRUDNIENIA niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_data_urodzenia, '^[0-9]{2}-[0-9]{2}-[0-9]{4}$') THEN
+            raise_application_error(-20025, 'STOMATOLOG.DATA_URODZENIA niepoprawna wartosc');
+        ELSE
+            util_pack.sprawdzdate(z_data_urodzenia);
+        END IF;
+
+        IF NOT regexp_like(z_telefon, '^[[:digit:]]{9}$') THEN
+            raise_application_error(-20026, 'STOMATOLOG.TELEFON niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_godziny_przyjec, '^[R,W]{1}$') THEN
+            raise_application_error(-20028, 'STOMATOLOG.GODZINY_PRZYJEC niepoprawna wartosc');
+        END IF;
+
+        INSERT INTO stomatolog VALUES (
+            NULL,
+            z_imie,
+            z_nazwisko,
+            z_rok_zatrudnienia,
+            to_date(z_data_urodzenia, 'DD-MM-YYYY'),
+            z_telefon,
+            z_id_kliniki,
+            z_godziny_przyjec
+        );
+
+        dbms_output.put_line('poprawny stomatolog');
+        COMMIT;
+    END dodaj;
+
+    PROCEDURE edytuj (
+        z_id_stomatologa   IN NUMBER,
+        z_imie             IN VARCHAR2,
+        z_nazwisko         IN VARCHAR2,
+        z_rok_zatrudnienia IN CHAR,
+        z_data_urodzenia   IN VARCHAR2,
+        z_telefon          IN CHAR,
+        z_id_kliniki       IN NUMBER,
+        z_godziny_przyjec  IN CHAR
+    ) IS
+
+        s_imie_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_imie_zla_wartosc, -20022 );
+        s_nazw_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_nazw_zla_wartosc, -20023 );
+        s_rok_zatrudnienia_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_rok_zatrudnienia_zla_wartosc, -20024 );
+        s_dataur_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_dataur_zla_wartosc, -20025 );
+        s_telefon_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_telefon_zla_wartosc, -20026 );
+        s_id_kliniki_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_id_kliniki_zla_wartosc, -20027 );
+        s_godziny_przyjec_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( s_godziny_przyjec_zla_wartosc, -20028 );
+        s_id_nie_istnieje EXCEPTION;
+        PRAGMA exception_init ( s_id_nie_istnieje, -20029 );
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            stomatolog
+        WHERE
+            id_stomatologa = z_id_stomatologa;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20029, 'STOMATOLOG.ID_STOMATOLOGA nie istnieje');
+        END IF;
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            klinika
+        WHERE
+            id_kliniki = z_id_kliniki;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20027, 'STOMATOLOG.ID_KLINIKI nie istnieje');
+        END IF;
+        IF NOT regexp_like(z_imie, '^[[:alpha:]]{0,20}$') THEN
+            raise_application_error(-20022, 'STOMATOLOG.IMIE niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_nazwisko, '^[[:alpha:]]{0,20}$') THEN
+            raise_application_error(-20023, 'STOMATOLOG.NAZWISKO niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_rok_zatrudnienia, '^[[:digit:]]{4}$') THEN
+            raise_application_error(-20024, 'STOMATOLOG.ROK_ZATRUDNIENIA niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_data_urodzenia, '^[0-9]{2}-[0-9]{2}-[0-9]{4}$') THEN
+            raise_application_error(-20025, 'STOMATOLOG.DATA_URODZENIA niepoprawna wartosc');
+        ELSE
+            util_pack.sprawdzdate(z_data_urodzenia);
+        END IF;
+
+        IF NOT regexp_like(z_telefon, '^[[:digit:]]{9}$') THEN
+            raise_application_error(-20026, 'STOMATOLOG.TELEFON niepoprawna wartosc');
+        END IF;
+
+        IF NOT regexp_like(z_godziny_przyjec, '^[R,W]{1}$') THEN
+            raise_application_error(-20028, 'STOMATOLOG.GODZINY_PRZYJEC niepoprawna wartosc');
+        END IF;
+
+        UPDATE stomatolog
+        SET
+            imie = z_imie,
+            nazwisko = z_nazwisko,
+            rok_zatrudnienia = z_rok_zatrudnienia,
+            data_urodzenia = to_date(z_data_urodzenia, 'DD-MM-YYYY'),
+            telefon = z_telefon,
+            id_kliniki = z_id_kliniki,
+            godziny_przyjec = z_godziny_przyjec
+        WHERE
+            id_stomatologa = z_id_stomatologa;
+
+        dbms_output.put_line('poprawny stomatolog');
+        COMMIT;
+    END edytuj;
+
+    PROCEDURE usun (
+        z_id_stomatologa IN NUMBER
+    ) IS
+        s_id_nie_istnieje EXCEPTION;
+        PRAGMA exception_init ( s_id_nie_istnieje, -20029 );
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            stomatolog
+        WHERE
+            id_stomatologa = z_id_stomatologa;
+
+        IF checkid = 0 THEN
+            raise_application_error(-20029, 'STOMATOLOG.ID_STOMATOLOGA nie istnieje');
+        END IF;
+        DELETE FROM stomatolog
+        WHERE
+            id_stomatologa = z_id_stomatologa;
+
+        dbms_output.put_line('poprawny stomatolog');
+        COMMIT;
+    END usun;
+
+END stomatolog_pack;

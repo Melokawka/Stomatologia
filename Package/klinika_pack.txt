@@ -1,0 +1,117 @@
+create or replace PACKAGE klinika_pack AS 
+    PROCEDURE dodaj(
+    z_miejscowosc IN VARCHAR2, 
+    z_adres IN VARCHAR2 , 
+    z_kod_pocztowy IN CHAR, 
+    z_telefon IN CHAR);
+
+    PROCEDURE edytuj(
+    z_id_kliniki IN NUMBER,
+    z_miejscowosc IN VARCHAR2, 
+    z_adres IN VARCHAR2 , 
+    z_kod_pocztowy IN CHAR, 
+    z_telefon IN CHAR);
+
+    PROCEDURE usun(
+     z_id_kliniki IN NUMBER);
+
+END klinika_pack;
+
+create or replace PACKAGE BODY klinika_pack AS  
+   
+    PROCEDURE dodaj(
+      z_miejscowosc IN VARCHAR2, 
+      z_adres IN VARCHAR2 , 
+      z_kod_pocztowy IN CHAR, 
+      z_telefon IN CHAR) 
+    IS 
+      k_m_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(k_m_zla_wartosc, -20001);
+      k_a_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(k_a_zla_wartosc, -20002);
+      k_k_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(k_k_zla_wartosc, -20003);
+      k_t_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(k_t_zla_wartosc, -20004);
+    BEGIN
+      IF NOT REGEXP_LIKE(z_miejscowosc, '^[[:alpha:]]{0,15}$') THEN
+        raise_application_error(-20001,'KLINIKA.MIEJSCOWOSC niepoprawna wartosc');
+      END IF;
+      IF LENGTH(z_adres) > 25 THEN
+        raise_application_error(-20002,'KLINIKA.ADRES niepoprawna dlugosc');
+      END IF;
+      IF NOT REGEXP_LIKE(z_kod_pocztowy, '^[0-9]{2}-[0-9]{3}$') THEN
+        raise_application_error(-20003,'KLINIKA.KOD_POCZTOWY niepoprawna wartosc');
+      END IF;
+      IF NOT REGEXP_LIKE(z_telefon, '^[[:digit:]]{9}$') THEN
+        raise_application_error(-20004,'KLINIKA.TELEFON niepoprawna wartosc');
+      END IF;
+
+      INSERT INTO klinika VALUES (null, z_miejscowosc, z_adres, z_kod_pocztowy, z_telefon);
+      dbms_output.put_line('Procedura zakończona');
+      COMMIT;
+    END dodaj;
+
+
+    PROCEDURE edytuj(
+      z_id_kliniki IN NUMBER,
+      z_miejscowosc IN VARCHAR2, 
+      z_adres IN VARCHAR2 , 
+      z_kod_pocztowy IN CHAR, 
+      z_telefon IN CHAR) 
+    IS 
+      k_m_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(k_m_zla_wartosc, -20001);
+      k_a_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(k_a_zla_wartosc, -20002);
+      k_k_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(k_k_zla_wartosc, -20003);
+      k_t_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(k_t_zla_wartosc, -20004);
+      k_id_nie_istnieje EXCEPTION;
+      PRAGMA exception_init(k_id_nie_istnieje, -20005);
+
+      checkid NUMBER(7);
+    BEGIN
+      SELECT count(1) INTO checkid FROM klinika WHERE id_kliniki=z_id_kliniki; 
+      IF checkid = 0 THEN
+        raise_application_error(-20005,'KLINIKA.ID_KLINIKI nie istnieje');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_miejscowosc, '^[[:alpha:]]{0,15}$') THEN
+        raise_application_error(-20001,'KLINIKA.MIEJSCOWOSC niepoprawna wartosc');
+      END IF;
+
+      IF LENGTH(z_adres) > 25 THEN
+        raise_application_error(-20002,'KLINIKA.ADRES niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_kod_pocztowy, '^[0-9]{2}-[0-9]{3}$') THEN
+        raise_application_error(-20003,'KLINIKA.KOD_POCZTOWY niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_telefon, '^[[:digit:]]{9}$') THEN
+        raise_application_error(-20004,'KLINIKA.TELEFON niepoprawna wartosc');
+      END IF;
+
+      UPDATE klinika SET MIEJSCOWOSC=z_miejscowosc, ADRES=z_adres, KOD_POCZTOWY=z_kod_pocztowy, TELEFON=z_telefon WHERE ID_KLINIKI=z_id_kliniki;
+      dbms_output.put_line('good miejscowosc');
+      COMMIT;
+    END edytuj;
+
+    PROCEDURE usun(
+      z_id_kliniki IN NUMBER
+    )
+    IS
+      k_id_nie_istnieje EXCEPTION;
+      PRAGMA exception_init(k_id_nie_istnieje, -20005);
+      checkid NUMBER(7);
+    BEGIN
+      SELECT count(1) INTO checkid FROM klinika WHERE id_kliniki=z_id_kliniki; 
+      IF checkid = 0 THEN
+        raise_application_error(-20005,'KLINIKA.ID_KLINIKI nie istnieje');
+      END IF;
+      DELETE FROM klinika WHERE id_kliniki=z_id_kliniki;
+      COMMIT;
+    END usun;
+END klinika_pack;

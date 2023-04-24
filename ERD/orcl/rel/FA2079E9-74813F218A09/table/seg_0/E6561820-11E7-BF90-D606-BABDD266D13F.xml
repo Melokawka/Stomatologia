@@ -1,0 +1,163 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E6561820-11E7-BF90-D606-BABDD266D13F" schemaObject="311C06CB-573B-F841-54D3-F4FEA4F28EFB" name="WIZYTA">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>WIZYTA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:01 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_WIZYTY" id="1C2898BB-BF32-F224-EB18-350BE3104321">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA</sourceObjSchema>
+<sourceObjName>ID_WIZYTY</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementStartWith>701</autoIncrementStartWith>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="GODZINA" id="752A3CE9-461A-CCC0-9B98-975417BB71A5">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA</sourceObjSchema>
+<sourceObjName>GODZINA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>8 BYTE</dataTypeSize>
+<ownDataTypeParameters>8 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_" id="021A2763-E8D9-C62B-ABBE-F4BD6169AD40">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA</sourceObjSchema>
+<sourceObjName>DATA_</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_PACJENTA" id="93CD69EE-EBDF-5A45-3BCB-D489AF6F8E68">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA</sourceObjSchema>
+<sourceObjName>ID_PACJENTA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7F2E67A1-FDC0-721C-9655-F63FF85CFD3D" referredColumn="ED80BFF6-0275-D3E6-28FA-1797813F94A8"/>
+</associations>
+</Column>
+<Column name="ID_STOMATOLOGA" id="38E27BB9-1876-89BB-E785-41C2A410E1BC">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA</sourceObjSchema>
+<sourceObjName>ID_STOMATOLOGA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2394E659-AE0D-CCA5-0044-B1D07EC0A931" referredColumn="8EE7F025-B32F-0551-369E-15E7DC5A640E"/>
+</associations>
+</Column>
+<Column name="KOSZT" id="9B7A0769-E56A-0A7D-DDC9-764BAB95766A">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA</sourceObjSchema>
+<sourceObjName>KOSZT</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ARCHIWALNA" id="E836BD0B-8584-0062-0A28-062BCEE40A0D">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>WIZYTA</sourceObjSchema>
+<sourceObjName>ARCHIWALNA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="92BF2382-F3D0-016E-C2BA-864030C5BA18" schemaObject="311C06CB-573B-F841-54D3-F4FEA4F28EFB" name="WIZYTA_PK">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>SYS_C007673</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:07 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1C2898BB-BF32-F224-EB18-350BE3104321"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86D3E136-7E74-6BC1-1CD5-7456B6C65927" name="FK_PACDOWIZ">
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:09 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93CD69EE-EBDF-5A45-3BCB-D489AF6F8E68"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4FFC55DD-B276-907B-EA29-A2960B9DE68A" name="ID_STOMDOWIZ">
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:09 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="38E27BB9-1876-89BB-E785-41C2A410E1BC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

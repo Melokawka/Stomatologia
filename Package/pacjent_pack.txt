@@ -1,0 +1,207 @@
+create or replace PACKAGE pacjent_pack AS 
+    PROCEDURE dodaj(
+        z_imie IN VARCHAR2, 
+        z_nazwisko IN VARCHAR2, 
+        z_plec IN CHAR, 
+        z_data_urodzenia IN VARCHAR2,
+        z_pesel IN CHAR, 
+        z_miejscowosc IN VARCHAR2, 
+        z_adres IN VARCHAR2,
+        z_telefon IN CHAR, 
+        z_ubezpieczenie IN CHAR);
+
+    PROCEDURE edytuj(
+        z_id_pacjenta IN NUMBER,
+        z_imie IN VARCHAR2, 
+        z_nazwisko IN VARCHAR2, 
+        z_plec IN CHAR, 
+        z_data_urodzenia IN VARCHAR2,
+        z_pesel IN CHAR, 
+        z_miejscowosc IN VARCHAR2, 
+        z_adres IN VARCHAR2,
+        z_telefon IN CHAR, 
+        z_ubezpieczenie IN CHAR);
+
+    PROCEDURE usun(
+        z_id_pacjenta IN NUMBER);
+
+END pacjent_pack;
+
+create or replace PACKAGE BODY pacjent_pack AS 
+    PROCEDURE dodaj(
+      z_imie IN VARCHAR2, 
+      z_nazwisko IN VARCHAR2, 
+      z_plec IN CHAR, 
+      z_data_urodzenia IN VARCHAR2,
+      z_pesel IN CHAR, 
+      z_miejscowosc IN VARCHAR2, 
+      z_adres IN VARCHAR2,
+      z_telefon IN CHAR, 
+      z_ubezpieczenie IN CHAR) 
+    IS 
+      p_imie_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_imie_zla_wartosc, -20006);
+      p_nazw_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_nazw_zla_wartosc, -20007);
+      p_plec_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_plec_zla_wartosc, -20008);
+      p_dataur_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_dataur_zla_wartosc, -20009);
+      p_pesel_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_pesel_zla_wartosc, -20011);
+      p_miejsc_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_miejsc_zla_wartosc, -20012);
+      p_adres_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_adres_zla_wartosc, -20013);
+      p_tele_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_tele_zla_wartosc, -20014);
+      p_ubezp_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_ubezp_zla_wartosc, -20015);
+
+    BEGIN
+      IF NOT REGEXP_LIKE(z_imie, '^[[:alpha:]]{0,40}$') THEN
+        raise_application_error(-20006,'PACJENT.IMIE niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_nazwisko, '^[[:alpha:]]{0,40}$') THEN
+        raise_application_error(-20007,'PACJENT.NAZWISKO niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_plec, '^[K,M]{1}$') THEN
+        raise_application_error(-20008,'PACJENT.PLEC niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_data_urodzenia, '^[0-9]{2}-[0-9]{2}-[0-9]{4}$') THEN
+        raise_application_error(-20009,'PACJENT.DATA_URODZENIA niepoprawna wartosc');
+      ELSE 
+        util_pack.SprawdzDate(z_data_urodzenia);
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_pesel, '^[[:digit:]]{11}$') THEN
+        raise_application_error(-20011,'PACJENT.PESEL niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_MIEJSCOWOSC, '^[[:alpha:]]{0,40}$') THEN
+        raise_application_error(-20012,'PACJENT.MIEJSCOWOSC niepoprawna wartosc');
+      END IF;
+
+      IF LENGTH(z_adres) > 40 THEN
+        raise_application_error(-20013,'PACJENT.ADRES niepoprawna dlugosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_telefon, '^[[:digit:]]{9}$') THEN
+        raise_application_error(-20014,'PACJENT.TELEFON niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_ubezpieczenie, '^[0,1]{1}$') THEN
+        raise_application_error(-20015,'PACJENT.UBEZPIECZENIE niepoprawna wartosc');
+      END IF;
+
+      INSERT INTO PACJENT VALUES (null, z_imie, z_nazwisko, z_plec, TO_DATE(z_data_urodzenia, 'DD-MM-YYYY'), z_pesel, z_miejscowosc, z_adres, z_telefon, z_ubezpieczenie);
+      dbms_output.put_line('poprawny pacjent');
+      COMMIT;
+    END;
+
+    PROCEDURE edytuj(
+      z_id_pacjenta IN NUMBER,
+      z_imie IN VARCHAR2, 
+      z_nazwisko IN VARCHAR2, 
+      z_plec IN CHAR, 
+      z_data_urodzenia IN VARCHAR2,
+      z_pesel IN CHAR, 
+      z_miejscowosc IN VARCHAR2, 
+      z_adres IN VARCHAR2,
+      z_telefon IN CHAR, 
+      z_ubezpieczenie IN CHAR) 
+    IS 
+      p_imie_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_imie_zla_wartosc, -20006);
+      p_nazw_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_nazw_zla_wartosc, -20007);
+      p_plec_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_plec_zla_wartosc, -20008);
+      p_dataur_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_dataur_zla_wartosc, -20009);
+      p_pesel_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_pesel_zla_wartosc, -20011);
+      p_miejsc_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_miejsc_zla_wartosc, -20012);
+      p_adres_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_adres_zla_wartosc, -20013);
+      p_tele_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_tele_zla_wartosc, -20014);
+      p_ubezp_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(p_ubezp_zla_wartosc, -20015);
+
+      p_id_nie_istnieje EXCEPTION;
+      PRAGMA exception_init(p_id_nie_istnieje, -20016);
+
+      checkid NUMBER(7);
+
+    BEGIN
+      SELECT count(1) INTO checkid FROM pacjent WHERE id_pacjenta=z_id_pacjenta; 
+      IF checkid = 0 THEN
+        raise_application_error(-20016,'PACJENT.ID_PACJENTA nie istnieje');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_imie, '^[[:alpha:]]{0,40}$') THEN
+        raise_application_error(-20006,'PACJENT.IMIE niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_nazwisko, '^[[:alpha:]]{0,40}$') THEN
+        raise_application_error(-20007,'PACJENT.NAZWISKO niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_plec, '^[K,M]{1}$') THEN
+        raise_application_error(-20008,'PACJENT.PLEC niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_data_urodzenia, '^[0-9]{2}-[0-9]{2}-[0-9]{4}$') THEN
+        raise_application_error(-20009,'PACJENT.DATA_URODZENIA niepoprawna wartosc');
+      ELSE 
+        util_pack.SprawdzDate(z_data_urodzenia);
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_pesel, '^[[:digit:]]{11}$') THEN
+        raise_application_error(-20011,'PACJENT.PESEL niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_MIEJSCOWOSC, '^[[:alpha:]]{0,40}$') THEN
+        raise_application_error(-20012,'PACJENT.MIEJSCOWOSC niepoprawna wartosc');
+      END IF;
+
+      IF LENGTH(z_adres) > 40 THEN
+        raise_application_error(-20013,'PACJENT.ADRES niepoprawna dlugosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_telefon, '^[[:digit:]]{9}$') THEN
+        raise_application_error(-20014,'PACJENT.TELEFON niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_ubezpieczenie, '^[0,1]{1}$') THEN
+        raise_application_error(-20015,'PACJENT.UBEZPIECZENIE niepoprawna wartosc');
+      END IF;
+
+      UPDATE pacjent SET IMIE=z_imie, NAZWISKO=z_nazwisko, PLEC=z_plec, DATA_URODZENIA=TO_DATE(z_data_urodzenia, 'DD-MM-YYYY'),
+        PESEL=z_pesel, MIEJSCOWOSC=z_miejscowosc, ADRES=z_adres, TELEFON=z_telefon, UBEZPIECZENIE=z_ubezpieczenie
+        WHERE ID_PACJENTA=z_id_pacjenta;
+      dbms_output.put_line('poprawny pacjent');
+      COMMIT;
+    END;
+
+    PROCEDURE usun(
+      z_id_pacjenta IN NUMBER
+    )
+    IS
+      p_id_nie_istnieje EXCEPTION;
+      PRAGMA exception_init(p_id_nie_istnieje, -20016);
+      checkid NUMBER(7);
+    BEGIN
+      SELECT count(1) INTO checkid FROM pacjent WHERE id_pacjenta=z_id_pacjenta; 
+      IF checkid = 0 THEN
+        raise_application_error(-20016,'PACJENT.ID_PACJENTA nie istnieje');
+      END IF;
+      DELETE FROM pacjent WHERE id_pacjenta=z_id_pacjenta;
+      COMMIT;
+    END;
+END pacjent_pack;

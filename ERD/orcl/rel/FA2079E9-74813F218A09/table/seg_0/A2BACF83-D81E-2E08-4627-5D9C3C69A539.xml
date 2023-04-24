@@ -1,0 +1,176 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A2BACF83-D81E-2E08-4627-5D9C3C69A539" schemaObject="311C06CB-573B-F841-54D3-F4FEA4F28EFB" name="PACJENT">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>PACJENT</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:01 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_PACJENTA" id="ED80BFF6-0275-D3E6-28FA-1797813F94A8">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>ID_PACJENTA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementStartWith>51</autoIncrementStartWith>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="IMIE" id="5A1F8086-6FDF-C3F4-F7E3-5065A38D0D9F">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>IMIE</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAZWISKO" id="5FC32290-2262-ED23-A76B-B59845AA66C8">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>NAZWISKO</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLEC" id="760C2FE5-2FC2-1342-CCE6-9F05E4A160C1">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>PLEC</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_URODZENIA" id="94F637E6-130B-6563-430F-74BF5144A225">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>DATA_URODZENIA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PESEL" id="DC079DAE-913B-1636-5CCB-F15CDC57E35F">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>PESEL</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>11 BYTE</dataTypeSize>
+<ownDataTypeParameters>11 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MIEJSCOWOSC" id="23C2138B-D03D-EA05-F198-72AA39DB97EC">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>MIEJSCOWOSC</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADRES" id="179A785E-0AA8-770A-D850-E750EE1F04C0">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>ADRES</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TELEFON" id="94F1CA79-F412-5D0A-4152-5CCD82CFB2FC">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>TELEFON</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>9 BYTE</dataTypeSize>
+<ownDataTypeParameters>9 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UBEZPIECZENIE" id="B70628E5-B08D-AF58-BAC8-83BDBF0E356C">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>PACJENT</sourceObjSchema>
+<sourceObjName>UBEZPIECZENIE</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8506D7B5-E611-FC88-F417-2E257BBF24DF" schemaObject="311C06CB-573B-F841-54D3-F4FEA4F28EFB" name="PACJENT_PK">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>SYS_C007649</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:05 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ED80BFF6-0275-D3E6-28FA-1797813F94A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

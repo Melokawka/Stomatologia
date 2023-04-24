@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="551.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stomatologiaprojekt.EdytujStomatologaController">
+   <children>
+      <Text layoutX="63.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edytuj stomatologa">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Text>
+      <TextField fx:id="ImieTekst" layoutX="76.0" layoutY="83.0" AnchorPane.leftAnchor="76.0" />
+      <Text layoutX="76.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:" AnchorPane.leftAnchor="76.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="NazwiskoTekst" layoutX="76.0" layoutY="141.0" AnchorPane.leftAnchor="76.0" />
+      <Text layoutX="76.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" AnchorPane.leftAnchor="76.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="RZatrudnieniaTekst" layoutX="76.0" layoutY="199.0" AnchorPane.leftAnchor="76.0" />
+      <Text layoutX="76.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rok zatrudnienia:" AnchorPane.leftAnchor="76.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="TelefonTekst" layoutX="76.0" layoutY="320.0" AnchorPane.leftAnchor="76.0" />
+      <Text layoutX="76.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon:" AnchorPane.leftAnchor="76.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Button layoutX="63.0" layoutY="494.0" mnemonicParsing="false" onAction="#EdytujButtonAction" prefHeight="25.0" prefWidth="76.0" text="Edytuj" />
+      <Button layoutX="162.0" layoutY="494.0" mnemonicParsing="false" onAction="#AnulujButtonAction" prefHeight="25.0" prefWidth="76.0" text="Anuluj" />
+      <Text layoutX="76.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data urodzenia:" AnchorPane.leftAnchor="76.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="DataUrPicker" layoutX="77.0" layoutY="264.0" prefHeight="25.0" prefWidth="149.0" />
+      <ComboBox fx:id="KlinikaCombo" layoutX="77.0" layoutY="377.0" prefWidth="150.0" />
+      <Text layoutX="77.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klinika:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="GodzinyCombo" layoutX="77.0" layoutY="434.0" prefWidth="150.0" />
+      <Text layoutX="77.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Godziny przyjęć:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

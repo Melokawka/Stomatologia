@@ -1,0 +1,123 @@
+create or replace PACKAGE rodzzab_pack AS 
+    PROCEDURE dodaj(
+        z_rodzaj_zabiegu IN VARCHAR2, 
+        z_cena IN NUMBER, 
+        z_refundacja_dzieci IN CHAR, 
+        z_refundacja_dorosli_rok IN NUMBER);
+
+    PROCEDURE edytuj(
+        z_id_rodzaju_zabiegu IN NUMBER,
+        z_rodzaj_zabiegu IN VARCHAR2, 
+        z_cena IN NUMBER, 
+        z_refundacja_dzieci IN CHAR, 
+        z_refundacja_dorosli_rok IN NUMBER);
+
+    PROCEDURE usun(
+        z_id_rodzaju_zabiegu IN NUMBER);
+END rodzzab_pack;
+
+create or replace PACKAGE BODY rodzzab_pack AS 
+    PROCEDURE dodaj(
+        z_rodzaj_zabiegu IN VARCHAR2, 
+        z_cena IN NUMBER, 
+        z_refundacja_dzieci IN CHAR, 
+        z_refundacja_dorosli_rok IN NUMBER)
+    IS 
+      r_rodzaj_zabiegu_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(r_rodzaj_zabiegu_zla_wartosc, -20017);
+      r_cena_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(r_cena_zla_wartosc, -20018);
+      r_refundacja_dzieci_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(r_refundacja_dzieci_zla_wartosc, -20019);
+      r_refundacja_dorosli_rok_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(r_refundacja_dorosli_rok_zla_wartosc, -20020);
+
+    BEGIN
+      IF NOT REGEXP_LIKE(z_rodzaj_zabiegu, '^[[:alpha:]]{0,40}$') THEN
+        raise_application_error(-20017,'RODZAJ_ZABIEGU.RODZAJ_ZABIEGU niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_cena, '^[[:digit:]]+$') THEN
+        raise_application_error(-20018,'RODZAJ_ZABIEGU.CENA niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_refundacja_dzieci, '^[0,1]{1}$') THEN
+        raise_application_error(-20019,'RODZAJ_ZABIEGU.REFUNDACJA_DZIECI niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_refundacja_dorosli_rok, '^[[:digit:]]+$') THEN
+        raise_application_error(-20020,'RODZAJ_ZABIEGU.REFUNDACJA_DOROSLI_ROK niepoprawna wartosc');
+      END IF;
+
+      INSERT INTO rodzaj_zabiegu VALUES (null, z_rodzaj_zabiegu, z_cena, z_refundacja_dzieci, z_refundacja_dorosli_rok);
+      dbms_output.put_line('poprawny rodzaj zabiegu');
+      COMMIT;
+    END dodaj;
+
+    PROCEDURE edytuj(
+        z_id_rodzaju_zabiegu IN NUMBER,
+        z_rodzaj_zabiegu IN VARCHAR2, 
+        z_cena IN NUMBER, 
+        z_refundacja_dzieci IN CHAR, 
+        z_refundacja_dorosli_rok IN NUMBER)
+    IS 
+      r_rodzaj_zabiegu_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(r_rodzaj_zabiegu_zla_wartosc, -20017);
+      r_cena_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(r_cena_zla_wartosc, -20018);
+      r_refundacja_dzieci_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(r_refundacja_dzieci_zla_wartosc, -20019);
+      r_refundacja_dorosli_rok_zla_wartosc EXCEPTION;
+      PRAGMA exception_init(r_refundacja_dorosli_rok_zla_wartosc, -20020);
+
+      r_id_nie_istnieje EXCEPTION;
+      PRAGMA exception_init(r_id_nie_istnieje, -20021);
+
+      checkid NUMBER(7);
+
+    BEGIN
+      SELECT count(1) INTO checkid FROM rodzaj_zabiegu WHERE id_rodzaju_zabiegu=z_id_rodzaju_zabiegu; 
+      IF checkid = 0 THEN
+        raise_application_error(-20021,'PACJENT.ID_PACJENTA nie istnieje');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_rodzaj_zabiegu, '^[[:alpha:]]{0,40}$') THEN
+        raise_application_error(-20017,'RODZAJ_ZABIEGU.RODZAJ_ZABIEGU niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_cena, '^[[:digit:]]+$') THEN
+        raise_application_error(-20018,'RODZAJ_ZABIEGU.CENA niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_refundacja_dzieci, '^[0,1]{1}$') THEN
+        raise_application_error(-20019,'RODZAJ_ZABIEGU.REFUNDACJA_DZIECI niepoprawna wartosc');
+      END IF;
+
+      IF NOT REGEXP_LIKE(z_refundacja_dorosli_rok, '^[[:digit:]]+$') THEN
+        raise_application_error(-20020,'RODZAJ_ZABIEGU.REFUNDACJA_DOROSLI_ROK niepoprawna wartosc');
+      END IF;
+
+      UPDATE rodzaj_zabiegu SET RODZAJ_ZABIEGU=z_rodzaj_zabiegu, CENA=z_cena, REFUNDACJA_DZIECI=z_refundacja_dzieci, REFUNDACJA_DOROSLI_ROK=z_refundacja_dorosli_rok WHERE ID_RODZAJU_ZABIEGU=z_id_rodzaju_zabiegu;
+      dbms_output.put_line('poprawny rodzaj zabiegu');
+      COMMIT;
+    END edytuj;
+
+    PROCEDURE usun(
+        z_id_rodzaju_zabiegu IN NUMBER)
+        IS 
+      r_id_nie_istnieje EXCEPTION;
+      PRAGMA exception_init(r_id_nie_istnieje, -20021);
+      checkid NUMBER(7);
+
+    BEGIN
+
+      SELECT count(1) INTO checkid FROM rodzaj_zabiegu WHERE id_rodzaju_zabiegu=z_id_rodzaju_zabiegu; 
+      IF checkid = 0 THEN
+        raise_application_error(-20021,'RODZAJ_ZABIEGU.ID_RODZAJU_ZABIEGU nie istnieje');
+      END IF;
+
+      DELETE FROM rodzaj_zabiegu WHERE id_rodzaju_zabiegu=z_id_rodzaju_zabiegu;
+      dbms_output.put_line('poprawny rodzaj zabiegu');
+      COMMIT;
+    END usun;
+END rodzzab_pack;

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2394E659-AE0D-CCA5-0044-B1D07EC0A931" containerWithKeyObject="E6561820-11E7-BF90-D606-BABDD266D13F" localFKIndex="4FFC55DD-B276-907B-EA29-A2960B9DE68A" name="ID_STOMDOWIZ">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>ID_STOMDOWIZ</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:09 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<referredTableLongName>ZUZANNA.STOMATOLOG</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>72CCD286-C45D-45F3-7358-AB94A9F9C424</referredTableID>
+<keyObject>C5C17A81-10A3-0CAA-36C0-B08081E285B6</keyObject>
+<referredKeyID>C5C17A81-10A3-0CAA-36C0-B08081E285B6</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_STOMATOLOGA</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

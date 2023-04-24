@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="URUCHOM" directorySegmentName="seg_0" id="574FD936-4996-9E21-EA39-6D881AB8F9CA">
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:01 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<schemaObject>311C06CB-573B-F841-54D3-F4FEA4F28EFB</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>E9B5FFF6-9778-2E63-8FDD-0A0D22608F49</segment>
+<tableSpace>5F73D2BE-600B-0CA9-8411-22B9327D5FF5</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DATA_URUCHOM" id="0B3C6628-C0F3-B276-7426-32F050D740FE">
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="URUCHOM_PK" id="C1A76FB8-4E1B-274C-CC36-468F28F23B90">
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:07 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<schemaObject>311C06CB-573B-F841-54D3-F4FEA4F28EFB</schemaObject>
+<segment>D5A272B6-F42B-5D23-B151-8E8F085EECDD</segment>
+<tableSpace>5F73D2BE-600B-0CA9-8411-22B9327D5FF5</tableSpace>
+<indexSegment>D5A272B6-F42B-5D23-B151-8E8F085EECDD</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

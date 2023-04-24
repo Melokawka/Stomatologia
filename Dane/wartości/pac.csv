@@ -1,0 +1,51 @@
+id_pacjenta;imie;nazwisko;plec;data_urodzenia;pesel;miejscowosc;adres;telefon;ubezpieczenie
+01;Julianna;Czarnecka;K;22-11-1993;74062732241;Granice;ul. Parkowa 7;664885734;1
+02;Beata;Chmielewska;K;22-02-1974;96012766425;Budy;ul. Spokojna 7;503450197;1
+03;Anastazja;Krupa;K;14-01-1991;76042197657;Cegielnia;ul. Parkowa 1;345009367;1
+04;Mi³osz;Rutkowski;M;01-01-2012;12302311913;Podlesie;ul. Leœna 3;534903415;1
+05;Bogumi³;Michalak;M;19-05-2012;13261974115;£ódŸ;ul. Dziwna 10;017079812;1
+06;Jêdrzej;Kwiatkowski;M;02-12-2013;13251673891;Dêbina;ul. Polna 8;253589104;1
+07;Kamila;Sikorska;K;25-06-1995;00230598993;Kresy;ul. Parkowa 7;579079906;1
+08;Remigiusz;Szewczyk;M;29-03-1989;76031333932;Góra;ul. Ogrodowa 5;294694936;1
+09;Gabriela;Koz³owska;K;20-03-1977;87102828217;D¹brówka;ul. £¹kowa 13;031377497;1
+10;Anita;Kowalczyk;K;04-02-1978;95110669269;Nowiny;ul. Lipowa 1;169307146;1
+11;Jakub;Witkowski;M;09-07-1997;99111938441;Zalesie;ul. Koœcielna 2;259518439;1
+12;Anastazja;Wojciechowska;K;05-01-1982;01311762944;Wygoda;ul. £¹kowa 4;628150397;1
+13;Dorota;Szymañska;K;28-12-1977;99022471646;Borek;ul. Polna 8;826977996;1
+14;Jagoda;Przybylska;K;11-10-1976;79060859187;Dwór;ul. Koœcielna 13;420419297;1
+15;Andrzej;Soko³owski;M;28-08-1983;85100935519;Podlesie;ul. Leœna 2;164929988;0
+16;Natasza;Jasiñska;K;15-04-1992;70070976451;Zarzecze;ul. Spokojna 3;972920485;1
+17;Micha³;Nowak;M;11-05-1998;81112978515;Stara Wieœ;ul. Zielona 13;679013869;1
+18;Eugeniusz;Brzeziñski;M;01-11-1972;75040375559;Jaros³aw;os. Bohaterów 7/12;426344312;1
+19;Otylia;Zieliñska;K;27-11-1974;96121317237;B³onie;ul. Lipowa 7;228270460;1
+20;Dawid;Andrzejewski;M;04-06-1993;90052924328;Górki;ul. Brzozowa 9;165624128;1
+21;Konstancja;Wiœniewska;K;16-02-1989;97042344634;Dêbina;ul. Polna 2;001208487;1
+22;Alfred;Kowalski;M;07-02-1997;87071481673;Folwark;ul. Kwiatowa 11;713347553;1
+23;Kewin;Zalewski;M;07-05-1978;86060723121;Lublin;os. Oczko 4/13;474694124;1
+24;Anita;Mazurek;K;24-11-1972;82112496528;Zagrody;ul. Kolejowa 3;510421808;1
+25;Andrzej;Chmielewski;M;03-03-1973;84080684954;Pe³kinie;os. Pomników 1/2;655034530;1
+26;Eleonora;Wasilewska;K;03-09-1977;74011275452;Podlas;ul. Ogrodowa 15;594322368;1
+27;Grzegorz;Kowalski;M;13-06-1977;99020374798;£ódŸ;ul. Dziwna 12;147649597;1
+28;Jowita;Jankowska;K;20-05-1983;01230957797;Podgórze;ul. Koœcielna 11;031072786;1
+29;Piotr;Wójcik;M;18-08-1990;73092866971;Dó³;ul. Lipowa 4;256331158;1
+30;Edyta;Jakubowska;K;01-02-1986;79021823422;Dzia³;ul. Szkolna 10;736542682;0
+31;Julian;Gajewski;M;02-10-1987;01320523897;Kolonia;ul. Szkolna 9;763265254;1
+32;Anna;Kowalska;K;14-02-2000;89022329421;Bugaj;ul. Spokojna 10;421910483;1
+33;Kamil;Szymañski;M;19-02-1982;75042342142;Stara Wieœ;ul. Polna 7;519473165;1
+34;Kazimierz;Baran;M;25-05-1987;73053084837;Nowa Wieœ;ul. Krótka 13;910858164;1
+35;Jacek;Borkowski;M;30-01-1976;89121988325;Berlin;os. Wodne 5/67;971295205;1
+36;Maciej;Szewczyk;M;14-10-1969;87092597137;£añcut;ul. Ciekawa 2;527767606;1
+37;Irena;Nowak;K;15-05-1982;84101977522;Stara Wieœ;ul. Krótka 12;464052841;1
+38;Aureliusz;Pawlak;M;22-04-1977;73102113121;Poznañ;ul. Bogata 20;618547919;1
+39;El¿bieta;Baran;K;10-12-2000;89031524637;Stara Wieœ;ul. Kolejowa 5;268459498;1
+40;Jaros³aw;B¹k;M;01-04-1974;88031368519;Grzêska;os. Zamkowe 11/11;659283715;1
+41;Adrianna;Szulc;K;22-01-1971;71031639248;Zagórze;ul. Akacjowa 12;028576365;0
+42;Arkadiusz;Nowak;M;09-10-1968;87020775251;Paw³osiów;ul. Spokojna 6;223895955;1
+43;Anna;Pietrzak;K;16-05-1987;76041162289;Borki;ul. Szkolna 10;969475659;1
+44;Jan;Jakubowski;M;15-09-1997;93121737926;K¹ty;ul. Sosnowa 2;905477989;1
+45;Jan;Nowak;M;26-10-1973;84042286518;Stra¿ów;ul. Zawodowa 5;463230000;1
+46;Gracjan;Chmielewski;M;25-01-1975;00241216163;Warszawa;os. Zamieszkane 27/81;425028482;0
+47;Milena;Zawadzka;K;11-02-1996;87100642864;Kamionka;ul. Krótka 1;665857806;1
+48;Bogna;Ostrowska;K;05-06-2000;85051396579;Kamieniec;ul. Polna 9;385283284;1
+49;Alicja;Szymczak;K;11-08-1973;69070133782;Pod Lasem;ul. Lipowa 8;180887879;1
+50;Jowita;Krupa;K;15-07-2000;68030459579;Józefów;ul. Kolejowa 8;605290081;1

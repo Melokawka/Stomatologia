@@ -1,0 +1,193 @@
+create or replace PACKAGE util_pack AS
+
+PROCEDURE ArchiwizujJedna (id_wiz IN NUMBER);
+PROCEDURE ArchiwizujWszystkie;
+PROCEDURE DodajUruchom(dzis_data IN DATE);
+PROCEDURE SprawdzGodzine(godzina IN VARCHAR2);
+PROCEDURE SprawdzDate(data IN VARCHAR2);
+FUNCTION RefundacjaPrzyslugujeDor (id_pac IN NUMBER, id_zab IN NUMBER) RETURN NUMBER;
+FUNCTION SumaKoszt (id_wiz IN NUMBER) RETURN NUMBER;
+
+END util_pack;
+
+create or replace PACKAGE BODY util_pack AS
+
+    PROCEDURE archiwizujjedna (
+        id_wiz IN NUMBER
+    ) IS
+    BEGIN
+        UPDATE wizyta
+        SET
+            archiwalna = '1'
+        WHERE
+            wizyta.id_wizyty = id_wiz;
+
+        dbms_output.put_line('Procedura zakończona.');
+        COMMIT;
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('Wystąpił błąd');
+    END archiwizujjedna;
+
+    PROCEDURE archiwizujwszystkie IS
+
+        CURSOR kursor IS
+        SELECT
+            *
+        FROM
+            wizyta
+        WHERE
+            data_ <= trunc(sysdate);
+
+        row wizyta%rowtype;
+    BEGIN
+        OPEN kursor;
+        LOOP
+            FETCH kursor INTO row;
+            EXIT WHEN kursor%notfound;
+            UPDATE wizyta
+            SET
+                archiwalna = '1'
+            WHERE
+                wizyta.id_wizyty = row.id_wizyty;
+
+        END LOOP;
+
+        CLOSE kursor;
+        dbms_output.put_line('Archiwizacja zakończona.');
+    END archiwizujwszystkie;
+
+    PROCEDURE dodajuruchom (
+        dzis_data IN DATE
+    ) IS
+        checkid NUMBER(7);
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO checkid
+        FROM
+            uruchom
+        WHERE
+            data_uruchom = dzis_data;
+
+        IF checkid = 0 THEN
+            INSERT INTO uruchom VALUES ( dzis_data );
+
+            dbms_output.put_line('Dodano dzisiejszą datę uruchomienia ' || to_char(dzis_data));
+            COMMIT;
+        END IF;
+
+    END dodajuruchom;
+
+    PROCEDURE sprawdzgodzine (
+        godzina IN VARCHAR2
+    ) IS
+        godzina_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( godzina_zla_wartosc, -20010 );
+    BEGIN
+        dbms_output.put_line(to_date(godzina, 'HH24:MI:SS'));
+    EXCEPTION
+        WHEN OTHERS THEN
+            raise_application_error(-20010, 'GODZINA nie istnieje taka godzina');
+    END sprawdzgodzine;
+
+    PROCEDURE sprawdzdate (
+        data IN VARCHAR2
+    ) IS
+        dataur_zla_wartosc EXCEPTION;
+        PRAGMA exception_init ( dataur_zla_wartosc, -20010 );
+    BEGIN
+        dbms_output.put_line(to_date(data, 'DD-MM-YYYY'));
+    EXCEPTION
+        WHEN OTHERS THEN
+            raise_application_error(-20010, 'DATA_URODZENIA nie istnieje taki dzien');
+    END sprawdzdate;
+
+    FUNCTION refundacjaprzyslugujedor (
+        id_pac IN NUMBER,
+        id_zab IN NUMBER
+    ) RETURN NUMBER IS
+        tenrok      NUMBER;
+        max_rok     NUMBER;
+        przysluguje NUMBER;
+    BEGIN
+        SELECT
+            COUNT(*) "refundacja"
+        INTO tenrok
+        FROM
+                 wizyta w
+            INNER JOIN wizyta_zabiegi wz ON w.id_wizyty = wz.id_wizyty
+        WHERE
+                w.id_pacjenta = id_pac
+            AND wz.id_rodzaju_zabiegu = id_zab
+            AND EXTRACT(YEAR FROM w.data_) = EXTRACT(YEAR FROM sysdate)
+            AND wz.refundacja = '1';
+
+        SELECT
+            refundacja_dorosli_rok
+        INTO max_rok
+        FROM
+            rodzaj_zabiegu
+        WHERE
+            id_rodzaju_zabiegu = id_zab;
+
+        IF tenrok < max_rok THEN
+            przysluguje := 1;
+            dbms_output.put_line('Refundacja przysługuje');
+        ELSE
+            przysluguje := 0;
+            dbms_output.put_line('Refundacja nie przysługuje');
+        END IF;
+
+        dbms_output.put_line('Funkcja zakończona.');
+        RETURN przysluguje;
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('Wystąpił błąd');
+    END refundacjaprzyslugujedor;
+
+    FUNCTION sumakoszt (
+        id_wiz IN NUMBER
+    ) RETURN NUMBER IS
+
+        suma        NUMBER;
+        cenazabiegu NUMBER;
+        CURSOR kursor IS
+        SELECT
+            *
+        FROM
+                 wizyta w
+            INNER JOIN wizyta_zabiegi wz ON w.id_wizyty = wz.id_wizyty
+        WHERE
+            w.id_wizyty = id_wiz;
+
+        row         kursor%rowtype;
+    BEGIN
+        suma := 0;
+        OPEN kursor;
+        LOOP
+            FETCH kursor INTO row;
+            EXIT WHEN kursor%notfound;
+            IF row.refundacja = '0' THEN
+                SELECT
+                    cena
+                INTO cenazabiegu
+                FROM
+                    rodzaj_zabiegu
+                WHERE
+                    rodzaj_zabiegu.id_rodzaju_zabiegu = row.id_rodzaju_zabiegu;
+
+                suma := suma + cenazabiegu;
+            END IF;
+
+        END LOOP;
+
+        CLOSE kursor;
+        dbms_output.put_line('Funkcja zakończona.');
+        RETURN suma;
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('Wystąpił błąd');
+    END sumakoszt;
+
+END util_pack;

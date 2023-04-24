@@ -1,0 +1,108 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="50424F19-9E6A-308E-8B3A-189DA69E00E2" schemaObject="311C06CB-573B-F841-54D3-F4FEA4F28EFB" name="RODZAJ_ZABIEGU">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>RODZAJ_ZABIEGU</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:01 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_RODZAJU_ZABIEGU" id="1D237A30-4609-7835-0F00-1BBBD5F8336F">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>RODZAJ_ZABIEGU</sourceObjSchema>
+<sourceObjName>ID_RODZAJU_ZABIEGU</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementStartWith>23</autoIncrementStartWith>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="RODZAJ_ZABIEGU" id="C0045139-C17E-5704-6004-21CB310B15E8">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>RODZAJ_ZABIEGU</sourceObjSchema>
+<sourceObjName>RODZAJ_ZABIEGU</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CENA" id="DF19711C-ABF2-1C10-F36F-2F801E1ECBA7">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>RODZAJ_ZABIEGU</sourceObjSchema>
+<sourceObjName>CENA</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REFUNDACJA_DZIECI" id="9F519F50-FA95-7090-19F6-74CFC0DE320C">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>RODZAJ_ZABIEGU</sourceObjSchema>
+<sourceObjName>REFUNDACJA_DZIECI</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REFUNDACJA_DOROSLI_ROK" id="8590F019-5181-B829-141E-46E4909C8AB2">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>RODZAJ_ZABIEGU</sourceObjSchema>
+<sourceObjName>REFUNDACJA_DOROSLI_ROK</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:02 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="44AA3172-E3A2-207D-5799-F0CD3FAD371E" schemaObject="311C06CB-573B-F841-54D3-F4FEA4F28EFB" name="RODZAJ_ZABIEGU_PK">
+<sourceConnName>klinika</sourceConnName>
+<sourceObjSchema>ZUZANNA</sourceObjSchema>
+<sourceObjName>SYS_C007655</sourceObjName>
+<createdBy>Użytkownik_1</createdBy>
+<createdTime>2022-05-16 09:22:07 UTC</createdTime>
+<ownerDesignName>orcl</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1D237A30-4609-7835-0F00-1BBBD5F8336F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
